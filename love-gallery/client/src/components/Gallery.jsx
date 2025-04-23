@@ -16,7 +16,7 @@ const Gallery = () => {
     // Fetch images from the backend
     const fetchImages = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/images');
+        const response = await fetch('/api/images');
         const data = await response.json();
         setImages(data);
         setLoading(false);

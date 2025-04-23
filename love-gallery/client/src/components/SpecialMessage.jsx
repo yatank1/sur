@@ -14,7 +14,7 @@ const SpecialMessage = () => {
     // Fetch the special message from the backend
     const fetchMessage = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/special-message');
+        const response = await fetch('/api/special-message');
         const data = await response.json();
         setMessage(data);
         setLoading(false);
@@ -34,7 +34,7 @@ const SpecialMessage = () => {
           setTypedText(prev => prev + message.message[currentIndex]);
           setCurrentIndex(prevIndex => prevIndex + 1);
         }, 50); // Adjust typing speed here
-        
+
         return () => clearTimeout(timeout);
       }
     }
@@ -65,12 +65,12 @@ const SpecialMessage = () => {
     >
       <HeartIcon>❤️</HeartIcon>
       <Title>{message?.title || 'Special Message'}</Title>
-      
+
       <MessageContent>
         {typedText}
         <Cursor blink={currentIndex >= (message?.message.length || 0)} />
       </MessageContent>
-      
+
       <ButtonContainer>
         {!showFullMessage && currentIndex < (message?.message.length || 0) && (
           <Button className="btn secondary" onClick={handleSkip}>
@@ -81,10 +81,10 @@ const SpecialMessage = () => {
           Back to Gallery
         </Link>
       </ButtonContainer>
-      
+
       <FloatingHearts>
         {[...Array(10)].map((_, index) => (
-          <Heart 
+          <Heart
             key={index}
             style={{
               left: `${Math.random() * 100}%`,
@@ -119,7 +119,7 @@ const HeartIcon = styled.div`
   font-size: 3rem;
   margin-bottom: 10px;
   animation: pulse 1.5s infinite;
-  
+
   @keyframes pulse {
     0% {
       transform: scale(1);
@@ -138,7 +138,7 @@ const Title = styled.h1`
   color: #ff6b6b;
   margin-bottom: 20px;
   text-align: center;
-  
+
   @media (max-width: 768px) {
     font-size: 1.8rem;
   }
@@ -152,7 +152,7 @@ const MessageContent = styled.p`
   text-align: center;
   min-height: 150px;
   position: relative;
-  
+
   @media (max-width: 768px) {
     font-size: 1rem;
     min-height: 120px;
@@ -167,7 +167,7 @@ const Cursor = styled.span`
   margin-left: 2px;
   vertical-align: middle;
   animation: ${props => props.blink ? 'blink 1s infinite' : 'none'};
-  
+
   @keyframes blink {
     0%, 100% {
       opacity: 1;
@@ -183,7 +183,7 @@ const ButtonContainer = styled.div`
   justify-content: center;
   gap: 15px;
   margin-top: 10px;
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 10px;
@@ -209,7 +209,7 @@ const Heart = styled.div`
   animation: float linear infinite;
   bottom: -20px;
   opacity: 0.7;
-  
+
   @keyframes float {
     0% {
       transform: translateY(0) rotate(0deg);
@@ -235,7 +235,7 @@ const LoadingContainer = styled.div`
   border-radius: 20px;
   padding: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  
+
   p {
     margin-top: 20px;
     color: #ff6b6b;
@@ -250,7 +250,7 @@ const LoadingSpinner = styled.div`
   border-radius: 50%;
   border-top-color: #ff6b6b;
   animation: spin 1s ease-in-out infinite;
-  
+
   @keyframes spin {
     to {
       transform: rotate(360deg);
